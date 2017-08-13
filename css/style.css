@@ -646,7 +646,7 @@ nav {
     background-color: rgba(235, 235, 235, 0.7);
 }
 
-.contact form button {
+#send {
     max-width: 293px;
     width: 100%;
     height: 70px;
@@ -667,11 +667,11 @@ nav {
     margin-top: 50px;
 }
 
-.contact form button:hover {
+#send:hover {
     background-color: #8f89c7;
 }
 
-.contact form button:active {
+#send:active {
     outline: none;
     border-width: 0;
     transform: translateY(4px);
@@ -1015,7 +1015,7 @@ form :-ms-input-placeholder {
         margin-top: 3px;
     }
 
-    .contact form button {
+    #send {
         margin-top: 10px;
     }
 

@@ -209,16 +209,16 @@
                 </div>
                 <form action="">
                     <div class="contact__input-wrap">
-                        <input type="text" required placeholder="First Name *" title="First name">
-                        <input type="text" required placeholder="Surname *" title="Surname">
+                        <input id="firstName" type="text" required placeholder="First Name *" title="First name">
+                        <input id="surName" type="text" required placeholder="Surname *" title="Surname">
                     </div>
                     <div class="contact__input-wrap">
-                        <input type="phone" required placeholder="Phone Number *" title="Phone Number">
-                        <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        <input id="phone" type="phone" required placeholder="Phone Number *" title="Phone Number">
+                        <input id="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                placeholder="Your Email *" title="Your email">
                     </div>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Your Message *" title="Your Message"></textarea>
-                    <button type="submit">SEND MESSAGE</button>
+                    <textarea id="message" name="message" cols="30" rows="10" placeholder="Your Message *" title="Your Message"></textarea>
+                    <input type="button" id="send" value="SEND MESSAGE">
                 </form>
                 <div class="scroll-top" title="Go to the top"></div>
                 <div id="map"></div>

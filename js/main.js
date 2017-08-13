@@ -102,16 +102,26 @@
 
     });
 
-    var form = $('form');
-    form.on('submit', function (e) {
+    var sendButton= $("#send");
+    sendButton.on('click', function (e) {
+        e.preventDefault();
         e.stopPropagation();
-        console.log(form.serialize());
         $.ajax({
-            url: './backend.php',
+            url: './php/backend.php',
             type: 'POST',
-            data: form.serialize(),
-            success: function (respond) {
-                console.log('success' + respond);
+            data: {
+                firstName: $("#firstName").val(),
+                surName: $("#surName").val(),
+                phone: $("#phone").val(),
+                email: $("#email").val(),
+                message: $("#message").val()
+            },
+            success: function (response) {
+                if (response && response.error) {
+                    console.log(response.error)
+                } else if (response && response.success) {
+                    console.log("success");
+                }
             },
             error: function (jqXHR, textStatus) {
                 console.log('ОШИБКИ AJAX запроса: ' + textStatus);
