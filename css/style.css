@@ -26,6 +26,10 @@ body {
     background-color: #ebebeb;
 }
 
+.w100 {
+    width: 100%;
+}
+
 .row {
     padding: 50px 10px 50px 10px;
 }
@@ -614,7 +618,7 @@ nav {
 
 .contact form input {
     display: inline-block;
-    width: 48%;
+    width: 100%;
     height: 56px;
     line-height: 56px;
     border-radius: 4px;
@@ -1023,5 +1027,30 @@ form :-ms-input-placeholder {
         bottom: 15px;
     }
 }
-
+.contact__wrap-item {
+    position: relative;
+    width: 48%;
+}
+.contact__wrap-item.w100 {
+    width: 100%;
+}
+.contact__error {
+    position: absolute;
+    top: -40px;
+    background: #c85a5a;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+}
+.contact__error:after {
+    content: '';
+    width: 0;
+    display: block;
+    border: 7px solid transparent;
+    border-top-color: #c85a5a;
+    position: absolute;
+    left: 7px;
+    top: 33px;
+}
 /*# sourceMappingURL=style.css.map */

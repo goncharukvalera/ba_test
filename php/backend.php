@@ -26,7 +26,7 @@ function checkRegExp($name, $value)
 ;
 
 if (!checkRegExp('email', $email)) {
-    $response['error']['email'] = ['Invalid email'];
+    $response['error']['email'] = 'Invalid email';
 }
 
 if (!checkRegExp('phone', $phone)) {

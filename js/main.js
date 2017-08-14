@@ -1,7 +1,6 @@
 ;(function ($) {
     $(document).ready(function () {
 
-
         $('.works__slider-cont').slick({
             dots: true,
             slidesToShow: 1,
@@ -102,30 +101,69 @@
 
     });
 
-    var sendButton= $("#send");
-    sendButton.on('click', function (e) {
+    // sending form
+    var regex = {
+        firstName: /^[a-zA-Z ]{2,30}$/,
+        surName: /^[a-zA-Z ]{2,50}$/,
+        phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+        email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    }
+    function validateField(val, fieldName) {
+        var pattern = regex[fieldName];
+        if (pattern.test(val)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    $('#send-request-form').on('submit', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        $.ajax({
-            url: './php/backend.php',
-            type: 'POST',
-            data: {
-                firstName: $("#firstName").val(),
-                surName: $("#surName").val(),
-                phone: $("#phone").val(),
-                email: $("#email").val(),
-                message: $("#message").val()
-            },
-            success: function (response) {
-                if (response && response.error) {
-                    console.log(response.error)
-                } else if (response && response.success) {
-                    console.log("success");
+        var firstName = $("#firstName"),
+            surName = $("#surName"),
+            phone = $("#phone"),
+            email = $("#email"),
+            message = $("#message"),
+            data = {
+                firstName: firstName.val(),
+                surName: surName.val(),
+                phone: phone.val(),
+                email: email.val(),
+                message: message.val()
+            };
+        if (!data.firstName || (data.firstName && !validateField(data.firstName, 'firstName'))) {
+            console.log(1);
+            firstName.prev('.contact__error').show();
+        } else if (!data.surName || (data.surName && !validateField(data.surName, 'surName'))) {
+            console.log(2);
+            surName.prev('.contact__error').show();
+        } else if (!data.phone || (data.phone && !validateField(data.phone, 'phone'))) {
+            console.log(3);
+            phone.prev('.contact__error').show();
+        } else if (!data.email || (data.email && !validateField(data.email, 'email'))) {
+            email.prev('.contact__error').show();
+        } else if (!data.message || (data.message && data.message.length > 1000)) {
+            email.prev('.contact__error').show();
+        } else {
+            $.ajax({
+                url: './php/backend.php',
+                type: 'POST',
+                data: data,
+                success: function (response) {
+                    if (response && response.error) {
+                        console.log(response.error)
+                    } else if (response && response.success) {
+                        alert('Thanks for your treatment');
+                    }
+                },
+                error: function (jqXHR, textStatus) {
+                    console.log('ОШИБКИ AJAX запроса: ' + textStatus);
                 }
-            },
-            error: function (jqXHR, textStatus) {
-                console.log('ОШИБКИ AJAX запроса: ' + textStatus);
-            }
-        });
+            });
+        }
+    });
+
+    $('#send-request-form input, #send-request-form textarea').on('keydown', function () {
+        $(this).prev('.contact__error').hide();
     });
 })(jQuery);

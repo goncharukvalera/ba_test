@@ -207,18 +207,33 @@
                     <div class="ico telephone__ico"></div>
                     <div class="contact__text">+3 (8099) 123 45 67</div>
                 </div>
-                <form action="">
+                <form id="send-request-form" action="">
                     <div class="contact__input-wrap">
-                        <input id="firstName" type="text" required placeholder="First Name *" title="First name">
-                        <input id="surName" type="text" required placeholder="Surname *" title="Surname">
+                        <div class="contact__wrap-item">
+                            <span class="contact__error">Enter valid name</span>
+                            <input id="firstName" type="text" required placeholder="First Name *" title="First name">
+                        </div>
+                        <div class="contact__wrap-item">
+                            <span class="contact__error">Enter valid surname</span>
+                            <input id="surName" type="text" required placeholder="Surname *" title="Surname">
+                        </div>
                     </div>
                     <div class="contact__input-wrap">
-                        <input id="phone" type="phone" required placeholder="Phone Number *" title="Phone Number">
-                        <input id="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        <div class="contact__wrap-item">
+                            <span class="contact__error">Enter valid phone</span>
+                            <input id="phone" type="phone" required placeholder="Phone Number *" title="Phone Number">
+                        </div>
+                        <div class="contact__wrap-item">
+                            <span class="contact__error">Enter valid email</span>
+                            <input id="email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                placeholder="Your Email *" title="Your email">
+                        </div>
                     </div>
-                    <textarea id="message" name="message" cols="30" rows="10" placeholder="Your Message *" title="Your Message"></textarea>
-                    <input type="button" id="send" value="SEND MESSAGE">
+                    <div class="contact__wrap-item w100">
+                        <span class="contact__error">Enter valid message</span>
+                        <textarea id="message" name="message" cols="30" rows="10" placeholder="Your Message *" title="Your Message"></textarea>
+                    </div>
+                    <input type="submit" id="send" value="SEND MESSAGE">
                 </form>
                 <div class="scroll-top" title="Go to the top"></div>
                 <div id="map"></div>
